@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+import { useDispatch } from "react-redux"
 import ActionsUsers from "../../Storages/Actions/Users"
 import midlewareAuth from "../../Utils/PagesAuth"
 
 const Login = (props) => {
 
+    const dispacth = useDispatch()
+
     /**
-     * contoh menyimpan token ke dalam storage dengan props.AuthSet()
-     * contoh menyimpan data user ke dalam storage  dengan props.UserSet()
+     * contoh menyimpan token ke dalam storage 
+     * contoh menyimpan data user ke dalam storage 
      */
     const setRedux = () => {
-        props.AuthSet('ini token')
-        props.UserSet([{ name: 'user', email: 'user@gmail.com' }])
+        dispacth(ActionsUsers.AuthSet('token1234'))
+        dispacth(ActionsUsers.UserSet({ name: 'xample' }))
     }
 
     return (
@@ -25,18 +26,4 @@ const Login = (props) => {
     )
 }
 
-// get redux
-const mapStateToProps = (state) => {
-    return {
-        users: state.users,
-    }
-}
-// set redux
-const mapDispatchToProps = (dispacth) => {
-    return {
-        AuthSet: bindActionCreators(ActionsUsers.AuthSet, dispacth),
-        UserSet: bindActionCreators(ActionsUsers.UserSet, dispacth),
-    }
-}
-
-export default midlewareAuth( connect(mapStateToProps,mapDispatchToProps)(Login) )
+export default midlewareAuth( Login )
