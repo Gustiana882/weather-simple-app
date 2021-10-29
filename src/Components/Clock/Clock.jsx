@@ -26,9 +26,9 @@ export default function Clock() {
 
     return (
         <>
-            <div className="w-80 my-3 bg-white rounded-md p-3 opacity-60 flex">
+            <div className="w-full my-3 bg-white rounded-md p-3 opacity-60 flex justify-between">
                 <h1 className="text-7xl font-bold m-0">{time.hours}:{time.minutes}</h1>
-                <div className="text-center mx-auto border-l-4 border-green-600 pl-2">
+                <div className="w-24 text-center border-l-4 border-green-600 pl-2">
                     <h1 className="text-4xl m-0">{time.day}</h1>
                     <h1 className="text-xl m-0">October</h1>
                 </div>
