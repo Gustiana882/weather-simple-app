@@ -9,44 +9,65 @@ import MapsLocation from "../../Components/Location/MapsLocation";
 
 function Home() {
 
+    const [menu, setMenu] = useState('maps')
+
+    function getWeather() {
+        // axios.get('https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/44418/')
+        //      .then((res) => console.log(res))
+        //      .catch((err) => console.log(err))
+        function reqListener () {
+            console.log(this.responseText);
+          }
+          
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener("load", reqListener);
+          oReq.open("GET", "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/44418/");
+          oReq.send();
+          
+    }
+
+    useEffect(() => {
+        getWeather()
+    }, [])
+
     return (
         <>
         <div className="w-screen h-screen fixed z-0">
-            <img className="w-full h-full" src={bg} alt="background" />
+            <img 
+                className="w-full h-full" 
+                src={bg} 
+                alt="background" />
         </div>
         <section className="absolute top-0 w-full flex justify-center">
             <div className="flex flex-col-reverse md:flex-row">
                 <div className="m-3">
                     <div className="bg-white w-full my-3 bg-opacity-70 rounded-lg p-5">
-                        {/* navbar */}
-                            <div className="flex justify-between">
-                                <input className="bg-gray-300 text-sm p-2 rounded-md" type="text" placeholder="search location" />
-                                <button className="bg-blue-300 text-white text-sm px-3 py-1 mx-3 rounded-md">Maps</button>
-                                <button className="bg-green-300 text-white text-sm px-3 py-1 mx-3 rounded-md">Weather Details</button>
-                            </div>
-                        {/* end navbar */}
-
-                        {/* location */}
-                        <div className="bg-gray-500 w-full h-96 my-5">
+                        <div className="flex justify-between">
+                            <input 
+                                className="bg-gray-300 text-sm p-2 rounded-md" 
+                                type="text" 
+                                placeholder="search location" />
+                            <button 
+                                className="bg-blue-300 text-white text-sm px-3 py-1 mx-3 rounded-md"
+                                onClick={()=>setMenu('maps')}>Maps</button>
+                            <button 
+                                className="bg-green-300 text-white text-sm px-3 py-1 mx-3 rounded-md"
+                                onClick={()=>setMenu('weather')}>Weather Details</button>
+                        </div>
+                        <div className={`bg-gray-500 w-full h-96 my-5 ${(menu === 'maps')? 'block': 'hidden'}`}>
                             <MapsLocation />
                         </div>
-                        {/* end location */}
 
-                        {/* weather */}
-                        <div className="my-5 hidden">
+                        <div className={`my-5 ${(menu === 'weather')? 'block': 'hidden'}`}>
                             <Weather />
                         </div>
-                        {/* end weather */}
 
                     </div>
                 </div>
                 <div className="m-3">
                     <div className="flex flex-col items-center w-full md:w-80">
-
                         <Clock />
-
                         <WeatherNow />
-
                         <div className="w-full my-3 bg-white rounded-md p-3 opacity-90 flex justify-between">
                             <Calendar />
                         </div>

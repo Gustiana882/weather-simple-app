@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Calendar, Select, Radio, Col, Row, Typography } from 'antd';
 
-function onPanelChange(value, mode) {
-  console.log(value, mode);
-}
 
 export default function Calender() {
+    
+    const [change, setChange] = useState('')
+    function onPanelChange(value, mode) {
+      console.log(value, mode);
+    }
+    console.log(change.format('YYYY-MM-DD'))
+
     return (
         <div>
-            <div className="site-calendar-customize-header-wrapper">
+            <div>
                 <Calendar
                 fullscreen={false}
                 headerRender={({ value, type, onChange, onTypeChange }) => {
@@ -25,11 +29,11 @@ export default function Calender() {
                     }
 
                     for (let index = start; index < end; index++) {
-                    monthOptions.push(
-                        <Select.Option className="month-item" key={`${index}`}>
-                        {months[index]}
-                        </Select.Option>,
-                    );
+                        monthOptions.push(
+                            <Select.Option className="month-item" key={`${index}`}>
+                            {months[index]}
+                            </Select.Option>,
+                        );
                     }
                     const month = value.month();
 
@@ -44,7 +48,7 @@ export default function Calender() {
                     }
                     return (
                     <div style={{ padding: 8 }}>
-                        <Typography.Title level={4}>Custom header</Typography.Title>
+                        <Typography.Title level={4}>Calender</Typography.Title>
                         <Row gutter={8}>
                         <Col>
                             <Radio.Group size="small" onChange={e => onTypeChange(e.target.value)} value={type}>
@@ -85,6 +89,7 @@ export default function Calender() {
                     );
                 }}
                 onPanelChange={onPanelChange}
+                onSelect={setChange}
                 />
             </div>
         </div>
