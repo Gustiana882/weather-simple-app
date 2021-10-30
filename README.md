@@ -1,5 +1,9 @@
 # Weather Simple App
 
+<div>
+  <img src="https://user-images.githubusercontent.com/55304067/139524222-1a4ac68b-e46c-4e19-9d6d-14ed7103fa2d.png" width="1000px" alt="Arkademylogo.svg" />
+</div>
+
 ### Git Clone
 ```bash
 git clone git@github.com:Gustiana882/weather-simple-app.git
