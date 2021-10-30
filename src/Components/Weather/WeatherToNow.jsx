@@ -12,7 +12,7 @@ export default function WeatherToNow(props) {
 
     function getWeatherDate(inputDate = date) {
         setLoading('animate-pulse')
-        axios.get(`${window._env_.DOMAIN_API}/api/location/${woeid}/${inputDate.format('YYYY/MM/DD')}/ `)
+        axios.get(`/api/api/location/${woeid}/${inputDate.format('YYYY/MM/DD')}/ `)
              .then(res => {
                  setWeather(res.data)
                  setLoading('')

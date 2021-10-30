@@ -12,7 +12,7 @@ export default function Weather(props) {
 
     function getWeather() {
         setLoading('animate-pulse')
-        axios.get(`${window._env_.DOMAIN_API}/location/${woeid}/`)
+        axios.get(`/api/location/${woeid}/`)
              .then(res => {
                  setWeather(res.data.consolidated_weather)
                  setLoading('')

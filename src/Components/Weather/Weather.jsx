@@ -11,13 +11,13 @@ export default function Weather() {
     const dispatch = useDispatch()
 
     function searchLocation() {
-        axios.get(`${window._env_.DOMAIN_API}/location/search/?lattlong=${location[1]},${location[0]}`)
+        axios.get(`/api/location/search/?lattlong=${location[1]},${location[0]}`)
              .then(res => dispatch(Action.setWoeid(res.data[0].woeid)))
              .catch(err => console.log(err))
     }
 
     function getWeather(params) {
-        axios.get(`${window._env_.DOMAIN_API}/location/${woeid}/`)
+        axios.get(`/api/location/${woeid}/`)
              .then(res => setWeatherNow(res.data.consolidated_weather[0]))
              .catch(err => console.log(err))
     }

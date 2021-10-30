@@ -2,6 +2,7 @@
   "name": "front-ticketing",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://www.metaweather.com",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@mapbox/mapbox-gl-geocoder": "^4.7.4",
