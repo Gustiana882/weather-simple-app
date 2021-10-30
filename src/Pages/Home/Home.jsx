@@ -28,7 +28,7 @@ function Home() {
                         <div className="flex justify-between">
                             <h1 className="font-bold text-2xl">Weather</h1>
                             <button 
-                                className="bg-blue-300 lg:ml-80 text-white text-sm px-3 py-1 mx-3 rounded-md"
+                                className="bg-blue-300 lg:ml-40 text-white text-sm px-3 py-1 mx-3 rounded-md"
                                 onClick={()=>setMenu('maps')}>Maps</button>
                             <button 
                                 className="bg-green-300 text-white text-sm px-3 py-1 mx-3 rounded-md"
