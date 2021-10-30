@@ -1,16 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import mapboxgl from "mapbox-gl/dist/mapbox-gl"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import Action from "../../Storages/Actions/Data"
 
 export default function MapsLocation() {
 
-    const [location, setLocation] = useState({ latitude: -6.63552, longitude: 106.7810816, zoom: 10 })
+    const dispatch = useDispatch()
+    const location = useSelector(state => state.data.location)
 
     function getLocation() {
         if('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const { latitude, longitude } = position.coords
-                setLocation({...location, ...{ latitude, longitude }})
+                dispatch(Action.setLocation([longitude, latitude]))
             });
         } else {
             console.log('not suport')
@@ -26,9 +32,20 @@ export default function MapsLocation() {
         const map = new mapboxgl.Map({
             container: document.getElementById('map'),
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [location.longitude, location.latitude],
-            zoom: location.zoom
+            center: location,
+            zoom: 10,
         });
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            marker: {
+                color: 'orange'
+            },
+            mapboxgl: mapboxgl
+        });
+        geocoder.on('result', function(e) {
+            dispatch(Action.setLocation(e.result.center))
+        })
+        map.addControl(geocoder);
     }, [location])
 
     return (

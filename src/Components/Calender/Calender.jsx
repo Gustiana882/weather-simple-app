@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Calendar, Select, Radio, Col, Row, Typography } from 'antd';
+import { useDispatch } from 'react-redux'
+import Action from "../../Storages/Actions/Data"
 
 
 export default function Calender() {
     
-    const [change, setChange] = useState('')
+
+    const dispatch = useDispatch()
+
     function onPanelChange(value, mode) {
-      console.log(value, mode);
+    //   console.log(value, mode);
     }
-    console.log(change.format('YYYY-MM-DD'))
 
     return (
         <div>
@@ -89,7 +92,7 @@ export default function Calender() {
                     );
                 }}
                 onPanelChange={onPanelChange}
-                onSelect={setChange}
+                onSelect={(date) => dispatch(Action.DateSet(date))}
                 />
             </div>
         </div>

@@ -4,18 +4,13 @@ import './index.css';
 import 'antd/dist/antd.css';
 import Routers from './Routers';
 import configStore from "./Storages/index"
-import { persistStore } from "redux-persist"
 import { Provider } from "react-redux"
-import { PersistGate } from "redux-persist/integration/react"
 
 const store = configStore()
-const persistor = persistStore(store)
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate persistor={persistor} loading={<div>loading..</div>}>
-            <Routers />
-        </PersistGate>
+        <Routers />
     </Provider>,
     document.getElementById("root")
 )
