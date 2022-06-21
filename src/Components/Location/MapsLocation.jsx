@@ -28,7 +28,7 @@ export default function MapsLocation() {
     }, [])
 
     useEffect(() => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VzdGlhbmEiLCJhIjoiY2t2YmpmMGhnYXA3aDJ2bnp1cnh1NW00ZSJ9.DUURhGc-sk7iVUT5BGQzEw';
+        mapboxgl.accessToken = 'token';
         const map = new mapboxgl.Map({
             container: document.getElementById('map'),
             style: 'mapbox://styles/mapbox/streets-v11',
